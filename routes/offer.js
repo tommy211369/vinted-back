@@ -33,17 +33,17 @@ router.post("/offer/publish", isAuthenticated, async (req, res) => {
       owner: req.user,
     });
 
-    // const userImage = await cloudinary.uploader.upload(req.files.picture.path, {
-    //   folder: `/vinted/offers/${newOffer.id}`,
-    // });
+    const userImage = await cloudinary.uploader.upload(req.files.picture.path, {
+      folder: `/vinted/offers/${newOffer.id}`,
+    });
 
-    // newOffer.product_image = userImage;
+    newOffer.product_image = userImage;
 
-    // await newOffer.save();
-    // res.json({
-    //   message: `${newOffer.owner.account.username} published a new offer  `,
-    //   offer: newOffer,
-    // });
+    await newOffer.save();
+    res.json({
+      message: `${newOffer.owner.account.username} published a new offer  `,
+      offer: newOffer,
+    });
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
