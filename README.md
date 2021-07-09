@@ -1,9 +1,9 @@
 # vinted-back
 A little Node.js student project where you can create an account, log in with a token, publish, update and delete offers.
 
-HTTP request : Postman.
+HTTP requests : Postman
 
-Database used : MongoDB.
+Database : MongoDB
 
 ## Initialization
 Install all packages and node_modules with ```npm i```
