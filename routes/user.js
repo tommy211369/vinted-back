@@ -5,8 +5,9 @@ const uid2 = require("uid2");
 const SHA256 = require("crypto-js/sha256");
 const encBase64 = require("crypto-js/enc-base64");
 
-// import du model User
+// import models
 const User = require("../models/User");
+const Offer = require("../models/Offer");
 
 cloudinary.config({
   cloud_name: "dsg8d0epf",
@@ -15,9 +16,9 @@ cloudinary.config({
   secure: true,
 });
 
+// SIGN UP
 router.post("/user/signup", async (req, res) => {
   try {
-    // rechercher si l'email existe déjà :
     const emailExist = await User.findOne({ email: req.fields.email });
 
     if (emailExist) {
@@ -25,18 +26,11 @@ router.post("/user/signup", async (req, res) => {
     } else if (req.fields.username === "") {
       res.status(400).json({ message: "Username is required" });
     } else {
-      // récupérer le mot de passe
       const password = req.fields.password;
-      // générer le SALT :
       const userSalt = uid2(16);
-
-      // générer le HASH :
       const userHash = SHA256(password + userSalt).toString(encBase64);
-
-      // générer un TOKEN :
       const userToken = uid2(64);
 
-      //on récupère la picture de l'user
       const userAvatar = await cloudinary.uploader.upload(
         req.files.picture.path,
         {
@@ -70,7 +64,7 @@ router.post("/user/signup", async (req, res) => {
   }
 });
 
-//login
+// LOGIN
 router.post("/user/login", async (req, res) => {
   try {
     const user = await User.findOne({ email: req.fields.email });

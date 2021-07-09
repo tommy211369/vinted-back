@@ -7,7 +7,7 @@ const cors = require("cors");
 
 const app = express();
 app.use(formidable());
-//Permet d'autoriser tous les sites à appeler votre API
+// all websites can connect to API
 app.use(cors());
 
 mongoose.connect(process.env.MONGODB_URI, {
@@ -23,7 +23,7 @@ cloudinary.config({
   secure: true,
 });
 
-// import des routes
+// routes import
 const userRoutes = require("./routes/user");
 const offerRoutes = require("./routes/offer");
 app.use(userRoutes);
