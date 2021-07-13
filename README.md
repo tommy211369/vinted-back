@@ -1,5 +1,5 @@
 # vinted-back
-A little Node.js student project where you can create an account, log in with a token, publish, update and delete offers.
+A Node.js student project where you can create an account, log in with a token, publish, update and delete offers.
 
 HTTP requests : Postman
 
