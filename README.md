@@ -34,4 +34,4 @@ You can use Postman for HTTP Requests
 ## Heroku & MongoDBAtlas
 For this project, I used Heroku server & MongoDB Atlas database cloud service.
 
-Requests are possible on : https://vinted-back-tommy.herokuapp.com/offers
+GET Requests are possible on : https://vinted-back-tommy.herokuapp.com/offers
