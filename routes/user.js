@@ -9,12 +9,12 @@ const encBase64 = require("crypto-js/enc-base64");
 const User = require("../models/User");
 const Offer = require("../models/Offer");
 
-cloudinary.config({
-  cloud_name: "dsg8d0epf",
-  api_key: "394875394932391",
-  api_secret: "GjBGZ6ZcjF17_hPrnUN3qKoWqOg",
-  secure: true,
-});
+// cloudinary.config({
+//   cloud_name: "dsg8d0epf",
+//   api_key: "394875394932391",
+//   api_secret: "GjBGZ6ZcjF17_hPrnUN3qKoWqOg",
+//   secure: true,
+// });
 
 // SIGN UP
 router.post("/user/signup", async (req, res) => {
@@ -31,19 +31,19 @@ router.post("/user/signup", async (req, res) => {
       const userHash = SHA256(password + userSalt).toString(encBase64);
       const userToken = uid2(64);
 
-      const userAvatar = await cloudinary.uploader.upload(
-        req.files.picture.path,
-        {
-          folder: `/vinted/users/${req.fields.email}`,
-        }
-      );
+      // const userAvatar = await cloudinary.uploader.upload(
+      //   req.files.picture.path,
+      //   {
+      //     folder: `/vinted/users/${req.fields.email}`,
+      //   }
+      // );
+      // avatar: userAvatar,
 
       const newUser = await new User({
         email: req.fields.email,
         account: {
           username: req.fields.username,
           phone: req.fields.phone,
-          avatar: userAvatar,
         },
         token: userToken,
         hash: userHash,
@@ -57,7 +57,7 @@ router.post("/user/signup", async (req, res) => {
         account: newUser.account,
       };
 
-      res.json(resNewUser);
+      res.json({ message: "Signed up successfully", resNewUser });
     }
   } catch (error) {
     res.status(400).json(error.message);
