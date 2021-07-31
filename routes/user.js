@@ -31,19 +31,19 @@ router.post("/user/signup", async (req, res) => {
       const userHash = SHA256(password + userSalt).toString(encBase64);
       const userToken = uid2(64);
 
-      const userAvatar = await cloudinary.uploader.upload(
-        req.files.picture.path,
-        {
-          folder: `/vinted/users/${req.fields.email}`,
-        }
-      );
+      // const userAvatar = await cloudinary.uploader.upload(
+      //   req.files.picture.path,
+      //   {
+      //     folder: `/vinted/users/${req.fields.email}`,
+      //   }
+      // );
 
       const newUser = await new User({
         email: req.fields.email,
         account: {
           username: req.fields.username,
           phone: req.fields.phone,
-          avatar: userAvatar,
+          // avatar: userAvatar,
         },
         token: userToken,
         hash: userHash,
