@@ -80,7 +80,7 @@ router.post("/user/login", async (req, res) => {
           account: user.account,
         };
 
-        res.status(200).json({ message: "Logged in successfully", resUser });
+        res.status(200).json({ message: "Logged in !", resUser: resUser });
       } else {
         res.status(400).json({ message: "Wrong password" });
       }
