@@ -12,6 +12,7 @@ router.post("/offer/publish", isAuthenticated, async (req, res) => {
   try {
     let { title, description, price, brand, size, condition, color, city } =
       req.fields;
+
     const newOffer = await new Offer({
       product_name: title,
       product_description: description,
@@ -33,10 +34,11 @@ router.post("/offer/publish", isAuthenticated, async (req, res) => {
     newOffer.product_image = userImage;
 
     await newOffer.save();
-    res.json({
-      message: `${newOffer.owner.account.username} published a new offer  `,
-      offer: newOffer,
-    });
+    res.json({ ReqfieldsBack: req.fields });
+    // res.json({
+    //   message: `${newOffer.owner.account.username} published a new offer  `,
+    //   offer: newOffer,
+    // });
   } catch (error) {
     res.status(400).json({ PublishBackError: error.message });
   }
