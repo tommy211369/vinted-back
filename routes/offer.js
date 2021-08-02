@@ -34,12 +34,10 @@ router.post("/offer/publish", isAuthenticated, async (req, res) => {
     newOffer.product_image = userImage;
 
     await newOffer.save();
-    console.log(req.fields);
-    res.json({ ReqfieldsBack: req.fields, ReqFiles: req.files });
-    // res.json({
-    //   message: `${newOffer.owner.account.username} published a new offer  `,
-    //   offer: newOffer,
-    // });
+    res.json({
+      message: `${newOffer.owner.account.username} published a new offer  `,
+      offer: newOffer,
+    });
   } catch (error) {
     res.status(400).json({ PublishBackError: error.message });
   }
