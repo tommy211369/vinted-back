@@ -7,13 +7,6 @@ const isAuthenticated = require("../middlewares/isAuthenticated");
 const Offer = require("../models/Offer");
 const User = require("../models/User");
 
-// cloudinary.config({
-//   cloud_name: "dsg8d0epf",
-//   api_key: "394875394932391",
-//   api_secret: "GjBGZ6ZcjF17_hPrnUN3qKoWqOg",
-//   secure: true,
-// });
-
 // PUBLISH OFFERS
 router.post("/offer/publish", isAuthenticated, async (req, res) => {
   try {
@@ -45,7 +38,7 @@ router.post("/offer/publish", isAuthenticated, async (req, res) => {
       offer: newOffer,
     });
   } catch (error) {
-    res.status(400).json({ message: error.message });
+    res.status(400).json({ PublishBackError: error.message });
   }
 });
 
