@@ -34,7 +34,8 @@ router.post("/offer/publish", isAuthenticated, async (req, res) => {
     newOffer.product_image = userImage;
 
     await newOffer.save();
-    res.json({ ReqfieldsBack: req.fields });
+    console.log(req.fields);
+    res.json({ ReqfieldsBack: req.fields, ReqFiles: req.files });
     // res.json({
     //   message: `${newOffer.owner.account.username} published a new offer  `,
     //   offer: newOffer,
