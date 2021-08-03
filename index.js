@@ -4,6 +4,9 @@ const formidable = require("express-formidable");
 const mongoose = require("mongoose");
 const cloudinary = require("cloudinary").v2;
 const cors = require("cors");
+const stripe = require("stripe")(
+  "sk_test_51JKI7oLawUeCn98vfiSZLZ5X629lDTvplLmBtMZcfRwMG85jC0F2GuVWvlLHIGGGdVhLLP6usejTkw4VaoItUlsw007WTk8dr1"
+);
 
 const app = express();
 app.use(formidable());
@@ -26,8 +29,10 @@ cloudinary.config({
 // routes import
 const userRoutes = require("./routes/user");
 const offerRoutes = require("./routes/offer");
+const stripeRoutes = require("./routes/stripe");
 app.use(userRoutes);
 app.use(offerRoutes);
+app.use(stripeRoutes);
 
 app.all("*", (req, res) => {
   res.json(404).json({ message: "Page not found" });
