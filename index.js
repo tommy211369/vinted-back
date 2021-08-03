@@ -29,10 +29,26 @@ cloudinary.config({
 // routes import
 const userRoutes = require("./routes/user");
 const offerRoutes = require("./routes/offer");
-const stripeRoutes = require("./routes/stripe");
 app.use(userRoutes);
 app.use(offerRoutes);
-app.use(stripeRoutes);
+
+app.post("/payment", async (req, res) => {
+  console.log("hELLO Back");
+  try {
+    const response = await stripe.charges.create({
+      amount: req.fields.price * 100, // en centimes sur Stripe
+      currency: "eur",
+      description: "La description du produit...",
+      source: req.fields.stripeToken,
+    });
+
+    console.log("La réponse de Stripe : ", response);
+
+    res.json("ok");
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+});
 
 app.all("*", (req, res) => {
   res.json(404).json({ message: "Page not found" });
