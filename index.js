@@ -4,9 +4,7 @@ const formidable = require("express-formidable");
 const mongoose = require("mongoose");
 const cloudinary = require("cloudinary").v2;
 const cors = require("cors");
-const stripe = require("stripe")(
-  "sk_test_51JKI7oLawUeCn98vfiSZLZ5X629lDTvplLmBtMZcfRwMG85jC0F2GuVWvlLHIGGGdVhLLP6usejTkw4VaoItUlsw007WTk8dr1"
-);
+const stripe = require("stripe")(process.env.STRIPE_API_SECRET);
 
 const app = express();
 app.use(formidable());
