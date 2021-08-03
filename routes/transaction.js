@@ -18,7 +18,6 @@ router.post("/payment", async (req, res) => {
         amount: req.fields.price.toFixed(2),
         currency: "eur",
         buyer: req.fields.buyer,
-        items: req.fields.items,
       });
       await newTransaction.save();
 
