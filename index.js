@@ -27,8 +27,10 @@ cloudinary.config({
 // routes import
 const userRoutes = require("./routes/user");
 const offerRoutes = require("./routes/offer");
+const stripeRoutes = require("./routes/transaction");
 app.use(userRoutes);
 app.use(offerRoutes);
+app.use(stripeRoutes);
 
 app.all("*", (req, res) => {
   res.json(404).json({ message: "Page not found" });
