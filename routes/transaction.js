@@ -15,12 +15,12 @@ router.post("/payment", async (req, res) => {
 
     if (response.status === "succeeded") {
       const newTransaction = await new Transaction({
-        amount: req.fields.price * 100,
+        amount: req.fields.price.toFixed(2),
         currency: "eur",
       });
       await newTransaction.save();
 
-      res.status(200).json({ message: "Payment validated" });
+      res.status(200).json(response.status);
     } else {
       res.status(400).json({ message: "Payment error" });
     }
