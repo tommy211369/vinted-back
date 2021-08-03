@@ -1,4 +1,4 @@
-const exports = require("express");
+const express = require("express");
 const router = express.Router();
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
@@ -29,3 +29,5 @@ router.post("/payment", async (req, res) => {
     res.status(400).json({ message: error.message });
   }
 });
+
+module.exports = router;
