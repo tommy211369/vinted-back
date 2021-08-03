@@ -30,21 +30,6 @@ const offerRoutes = require("./routes/offer");
 app.use(userRoutes);
 app.use(offerRoutes);
 
-app.post("/payment", async (req, res) => {
-  try {
-    const response = await stripe.charges.create({
-      amount: req.fields.price * 100, // en centimes sur Stripe
-      currency: "eur",
-      description: "La description du produit...",
-      source: req.fields.stripeToken,
-    });
-
-    res.status(200).json(response.status);
-  } catch (error) {
-    res.status(400).json({ message: error.message });
-  }
-});
-
 app.all("*", (req, res) => {
   res.json(404).json({ message: "Page not found" });
 });
