@@ -17,7 +17,6 @@ router.post("/payment", async (req, res) => {
       const newTransaction = await new Transaction({
         amount: req.fields.price * 100,
         currency: "eur",
-        buyer: req.fields.name,
       });
       await newTransaction.save();
 
