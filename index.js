@@ -32,6 +32,10 @@ app.use(userRoutes);
 app.use(offerRoutes);
 app.use(stripeRoutes);
 
+app.get("/", (req, res) => {
+  res.status(200).json({ message: "Welcome on Vinted API by Tommy !" });
+});
+
 app.all("*", (req, res) => {
   res.json(404).json({ message: "Page not found" });
 });
