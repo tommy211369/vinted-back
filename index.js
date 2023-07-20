@@ -33,7 +33,9 @@ app.use(offerRoutes);
 app.use(stripeRoutes);
 
 app.get("/", (req, res) => {
-  res.status(200).json({ message: "Welcome on Vinted API by Tommy !" });
+  res
+    .status(200)
+    .json({ message: "Welcome on Vinted API by Tommy Thongrasamy !" });
 });
 
 app.all("*", (req, res) => {
